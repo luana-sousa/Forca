@@ -1,0 +1,90 @@
+<br>
+<meta charset = "UTF-8">
+<script>
+// Cria um array com as linguagens de programação
+var linguagens= [
+"python",
+"javascript",
+"java",
+"html",
+"css",
+"c",
+"csharp",
+"golang",
+"kotlin",
+"php",
+"sql",
+"ruby",
+"pascal",
+"visualbasic",
+"assembly",
+"perl",
+"swift",
+"r"
+]
+
+// Iniciando o jogo
+alert("JOGO DA FORCA DAS LINGUAGENS DE PROGRAMAÇÃO")
+alert("Você possui 5 tentativas!!")
+
+// Escolhe uma palavra aleatória
+var palavra = linguagens[Math.floor(Math.random() * linguagens.length)];
+    
+// Configura a resposta
+var resposta = [];
+for (var i = 0; i < palavra.length; i++) {
+    resposta[i] = "_";
+}
+
+var letras_restantes = palavra.length;
+var erros = 5
+    
+// Loop do jogo
+while (letras_restantes > 0) {
+        
+    // Mostra ao jogador seu progresso
+    alert(resposta.join(" "));
+        
+    //Adivinhe a palavra
+    var adivinhar = prompt("Adivinhe uma letra ou clique em Cancelar para parar de jogar.");
+    if (adivinhar == null) {
+        // Fim do loop do jogo por apertar cancelar
+        break;
+    } 
+    else if (adivinhar.length !== 1) {
+            alert("Por favor insira uma única letra.");
+    } 
+        else {      
+        // Verifica a letra dentro da palavra sorteada
+            for (var j = 0; j < palavra.length; j++) {
+                if (palavra[j] == adivinhar) {
+                    resposta[j] = adivinhar;
+                    letras_restantes--;
+                }
+            }
+        }
+        
+    // Atualização de erros
+    if (palavra.indexOf(adivinhar) == -1) {
+        erros--;
+        if (erros >= 1)
+            alert("Você ainda tem " + erros + " tentativas!")
+        else
+            // Fim do loop do jogo por erros
+            break;
+    }
+}
+    
+// Mostra a resposta ao jogador
+if (letras_restantes == 0) {
+    alert("Você venceu, Parabéns!!! A resposta era " + palavra);
+    document.location.reload(true);
+}
+else if (erros <= 0) {
+    alert("Você perdeu, Tente novamente!!! A resposta era " + palavra);
+    document.location.reload(true);
+}
+if (adivinhar == null) {
+    alert("Jogo encerrado!!")
+}
+</script>
